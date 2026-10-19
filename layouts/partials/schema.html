@@ -53,4 +53,4 @@
   {{- $g = $g | append (dict "@type" "ProfilePage" "@id" (printf "%s#profile" .Permalink) "url" .Permalink "mainEntity" (dict "@id" $authorID)) -}}
 {{- end -}}
 
-<script type="application/ld+json">{{ dict "@context" "https://schema.org" "@graph" $g | jsonify | safeHTML }}</script>
+<script type="application/ld+json">{{ dict "@context" "https://schema.org" "@graph" $g | jsonify | safeJS }}</script>
