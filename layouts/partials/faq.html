@@ -1,0 +1,9 @@
+{{ with .Params.faq }}
+<section class="faq prose" aria-labelledby="faq-title">
+  <h2 id="faq-title">คำถามที่พบบ่อย</h2>
+  {{- range . }}
+  <h3>{{ .q }}</h3>
+  <p>{{ .a }}</p>
+  {{- end }}
+</section>
+{{ end }}

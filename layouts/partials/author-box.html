@@ -1,0 +1,9 @@
+{{ $a := site.Params.author }}
+<aside class="author" aria-label="ผู้เขียน">
+  <div class="avatar" aria-hidden="true">{{ substr $a.nameEn 0 1 }}</div>
+  <div>
+    <p class="author-name"><a href="{{ $a.url | relURL }}">{{ $a.name }}</a></p>
+    <p class="muted author-role">{{ $a.jobTitle }}</p>
+    <p>{{ $a.bio }}</p>
+  </div>
+</aside>

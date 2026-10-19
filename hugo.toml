@@ -1,0 +1,54 @@
+baseURL = "https://kandarunamil.github.io/"
+title = "อักษรพิเศษ"
+languageCode = "th-TH"
+defaultContentLanguage = "th"
+enableRobotsTXT = true
+disableKinds = ["taxonomy", "term"]
+timeout = "30s"
+
+[frontmatter]
+  lastmod = ["lastmod", ":git", "date", "publishDate"]
+
+[outputs]
+  home = ["HTML"]
+  section = ["HTML"]
+  page = ["HTML"]
+
+[sitemap]
+  changefreq = "monthly"
+  priority = 0.6
+  filename = "sitemap.xml"
+
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = false
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 3
+
+[params]
+  description = "สร้างอักษรพิเศษฟรี พิมพ์ข้อความแล้วคัดลอกไปใช้ใน IG, Facebook, LINE และ TikTok ได้ทันที"
+  ogImage = "img/og-default.png"
+  locale = "th_TH"
+  contactEmail = "hello@example.com"   # TODO: replace with your real address
+
+  [params.author]
+    name = "กานดา รุ่งนามิล"
+    nameEn = "Kanda Rungnamil"
+    jobTitle = "นักพัฒนาเว็บและนักเขียนเนื้อหาเครื่องมือดิจิทัล"
+    url = "/author/kanda-rungnamil/"
+    bio = "กานดามีประสบการณ์กว่า 8 ปีด้านการพัฒนาเว็บไซต์ ระบบข้อความ Unicode และการปรับแต่งเว็บสำหรับผู้ใช้ภาษาไทย เธอสนใจทำให้เครื่องมือออนไลน์ใช้งานง่าย เข้าถึงได้ และไม่เก็บข้อมูลของผู้ใช้"
+    # sameAs = ["https://www.linkedin.com/in/...", "https://github.com/kandarunamil"]
+
+[[menus.main]]
+  name = "เครื่องมือ"
+  pageRef = "/tools"
+  weight = 10
+[[menus.main]]
+  name = "เกี่ยวกับเรา"
+  pageRef = "/about"
+  weight = 20
+[[menus.main]]
+  name = "ติดต่อ"
+  pageRef = "/contact"
+  weight = 30

@@ -1,0 +1,6 @@
+{{- $c := slice -}}
+{{- range .Ancestors.Reverse -}}
+  {{- $c = $c | append (dict "name" (cond .IsHome "หน้าแรก" .LinkTitle) "url" .Permalink) -}}
+{{- end -}}
+{{- $c = $c | append (dict "name" .LinkTitle "url" .Permalink) -}}
+{{- return $c -}}

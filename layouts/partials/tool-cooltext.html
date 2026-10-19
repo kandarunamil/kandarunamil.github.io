@@ -1,0 +1,15 @@
+{{/* Usage: partial "tool-cooltext.html" (dict "groups" "all" "ids" "bold,italic" "limit" 150 "sample" "Hello World") */}}
+<section class="tool" aria-label="เครื่องมือสร้างตัวอักษร">
+  <label class="tool-label" for="ct-input">พิมพ์ข้อความของคุณ</label>
+  <textarea id="ct-input" rows="2" maxlength="600" spellcheck="false" autocomplete="off"
+    placeholder="พิมพ์ที่นี่ เช่น {{ .sample | default "Hello World" }}"
+    data-sample="{{ .sample | default "Hello World" }}"{{ with .limit }} data-limit="{{ . }}"{{ end }}></textarea>
+  <div class="tool-bar">
+    <button type="button" id="ct-clear" class="btn">ล้างข้อความ</button>
+    {{ if .limit }}<span id="ct-count" class="tool-count" aria-live="off"></span>{{ end }}
+    <span id="ct-status" class="muted" role="status" aria-live="polite"></span>
+  </div>
+  <ul id="ct-results" class="results" data-groups="{{ .groups | default "all" }}"{{ with .ids }} data-ids="{{ . }}"{{ end }}></ul>
+  <noscript><p class="muted">เครื่องมือนี้ต้องเปิดใช้งาน JavaScript</p></noscript>
+  <p class="muted tool-note">หมายเหตุ: สไตล์ส่วนใหญ่ใช้ได้กับตัวอักษรภาษาอังกฤษและตัวเลข ตัวอักษรไทยจะแสดงตามเดิม</p>
+</section>

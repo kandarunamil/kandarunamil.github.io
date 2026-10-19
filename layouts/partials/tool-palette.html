@@ -1,0 +1,19 @@
+{{/* Usage: partial "tool-palette.html" (dict "key" "symbols" "joiner" "") ; data in /data/<key>.yaml */}}
+{{ $d := index site.Data .key }}
+<section class="tool" id="pal" data-joiner="{{ .joiner }}" aria-label="ตัวเลือกสัญลักษณ์">
+  <label class="tool-label" for="pal-out">ข้อความที่เลือก (กดตัวเลือกด้านล่างเพื่อเพิ่ม)</label>
+  <textarea id="pal-out" rows="2" spellcheck="false" autocomplete="off" placeholder="กดสัญลักษณ์ที่ต้องการ ระบบจะคัดลอกให้อัตโนมัติ"></textarea>
+  <div class="tool-bar">
+    <button type="button" id="pal-copy" class="btn">คัดลอกทั้งหมด</button>
+    <button type="button" id="pal-clear" class="btn">ล้าง</button>
+    <span id="pal-status" class="muted" role="status" aria-live="polite"></span>
+  </div>
+  {{- range $d }}
+  <h2 class="pal-title">{{ .name }}</h2>
+  <div class="chips" role="group" aria-label="{{ .name }}">
+    {{- $items := cond (eq .kind "lines") (split (trim .items "\n\r ") "\n") (split .items " ") }}
+    {{- range $items }}{{ with trim . " \r" }}<button type="button" class="chip" data-v="{{ . }}">{{ . }}</button>{{ end }}{{ end }}
+  </div>
+  {{- end }}
+  <noscript><p class="muted">ต้องเปิดใช้งาน JavaScript จึงจะคัดลอกอัตโนมัติได้ แต่คุณยังเลือกข้อความด้วยตนเองได้</p></noscript>
+</section>

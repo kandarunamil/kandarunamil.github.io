@@ -1,0 +1,26 @@
+{{ define "main" }}
+{{ partial "breadcrumbs.html" . }}
+<header class="page">
+  <h1>{{ .Params.h1 | default .Title }}</h1>
+  {{ with .Description }}<p class="lead">{{ . }}</p>{{ end }}
+</header>
+<ul class="cards">
+  <li>
+    <a class="card" href="{{ site.Home.RelPermalink }}">
+      <span class="card-icon" aria-hidden="true">𝐀</span>
+      <strong>{{ site.Home.Params.toolName | default "อักษรพิเศษ" }}</strong>
+      <span class="muted">{{ site.Home.Params.toolDesc | default "สร้างตัวอักษรพิเศษกว่า 30 สไตล์ในที่เดียว" }}</span>
+    </a>
+  </li>
+  {{- range .Pages.ByWeight }}
+  <li>
+    <a class="card" href="{{ .RelPermalink }}">
+      <span class="card-icon" aria-hidden="true">{{ .Params.icon }}</span>
+      <strong>{{ .LinkTitle }}</strong>
+      <span class="muted">{{ .Description }}</span>
+    </a>
+  </li>
+  {{- end }}
+</ul>
+<div class="prose">{{ .Content }}</div>
+{{ end }}

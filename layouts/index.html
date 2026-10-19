@@ -1,0 +1,21 @@
+{{ define "main" }}
+<section class="hero">
+  <h1>{{ .Params.h1 | default .Title }}</h1>
+  {{ with .Params.lead }}<p class="lead">{{ . }}</p>{{ end }}
+</section>
+
+{{ partial "tool-cooltext.html" (dict "groups" "all" "sample" "Hello World") }}
+
+<article class="prose">
+  {{ .Content }}
+</article>
+
+{{ partial "faq.html" . }}
+{{ partial "author-box.html" . }}
+{{ end }}
+
+{{ define "scripts" }}
+{{ with resources.Get "js/cooltext.js" | resources.Minify | resources.Fingerprint }}
+<script src="{{ .RelPermalink }}" defer></script>
+{{ end }}
+{{ end }}

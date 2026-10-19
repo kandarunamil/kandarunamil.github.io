@@ -1,0 +1,31 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="foot-grid">
+      <section>
+        <h2 class="foot-title">{{ site.Title }}</h2>
+        <p class="muted">เครื่องมือสร้างอักษรพิเศษฟรี ทำงานในเบราว์เซอร์ของคุณ ไม่เก็บข้อความที่พิมพ์</p>
+      </section>
+      <nav aria-label="เครื่องมือ">
+        <h2 class="foot-title">เครื่องมือ</h2>
+        <ul>
+          <li><a href="{{ "/" | relURL }}">อักษรพิเศษ</a></li>
+          {{- range first 5 (where site.RegularPages "Section" "tools") }}
+          <li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
+          {{- end }}
+          <li><a href="{{ "/tools/" | relURL }}">ดูเครื่องมือทั้งหมด</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="ข้อมูลเว็บไซต์">
+        <h2 class="foot-title">ข้อมูล</h2>
+        <ul>
+          <li><a href="{{ "/about/" | relURL }}">เกี่ยวกับเรา</a></li>
+          <li><a href="{{ site.Params.author.url | relURL }}">ผู้เขียน</a></li>
+          <li><a href="{{ "/contact/" | relURL }}">ติดต่อ</a></li>
+          <li><a href="{{ "/privacy-policy/" | relURL }}">นโยบายความเป็นส่วนตัว</a></li>
+          <li><a href="{{ "/terms/" | relURL }}">ข้อกำหนดการใช้งาน</a></li>
+        </ul>
+      </nav>
+    </div>
+    <p class="copy muted">© {{ now.Year }} {{ site.Title }}</p>
+  </div>
+</footer>

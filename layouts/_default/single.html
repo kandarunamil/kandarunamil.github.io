@@ -1,0 +1,15 @@
+{{ define "main" }}
+{{ partial "breadcrumbs.html" . }}
+<article class="page">
+  <header>
+    <h1>{{ .Params.h1 | default .Title }}</h1>
+    {{ with .Description }}<p class="lead">{{ . }}</p>{{ end }}
+    {{ if .Params.byline }}
+    <p class="byline muted">เขียนโดย <a href="{{ site.Params.author.url | relURL }}">{{ site.Params.author.name }}</a> – อัปเดตล่าสุด <time datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ .Lastmod.Format "2006-01-02" }}</time></p>
+    {{ end }}
+  </header>
+  <div class="prose">{{ .Content }}</div>
+</article>
+{{ partial "faq.html" . }}
+{{ if .Params.byline }}{{ partial "author-box.html" . }}{{ end }}
+{{ end }}

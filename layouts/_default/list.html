@@ -1,0 +1,13 @@
+{{ define "main" }}
+{{ partial "breadcrumbs.html" . }}
+<header class="page">
+  <h1>{{ .Params.h1 | default .Title }}</h1>
+  {{ with .Description }}<p class="lead">{{ . }}</p>{{ end }}
+</header>
+<div class="prose">{{ .Content }}</div>
+<ul class="cards">
+  {{- range .Pages }}
+  <li><a class="card" href="{{ .RelPermalink }}"><strong>{{ .LinkTitle }}</strong><span class="muted">{{ .Description }}</span></a></li>
+  {{- end }}
+</ul>
+{{ end }}

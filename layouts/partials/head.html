@@ -1,0 +1,35 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{{- $title := .Title -}}
+{{- if .Params.seoTitle }}{{ $title = .Params.seoTitle }}{{ else if not .IsHome }}{{ $title = printf "%s | %s" .Title site.Title }}{{ end -}}
+{{- $desc := .Description | default site.Params.description | plainify -}}
+{{- $img := site.Params.ogImage | absURL -}}
+<title>{{ $title }}</title>
+<meta name="description" content="{{ $desc }}">
+{{- if .Params.noindex }}
+<meta name="robots" content="noindex, follow">
+{{- else }}
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+{{- end }}
+<link rel="canonical" href="{{ .Permalink }}">
+<link rel="alternate" hreflang="th" href="{{ .Permalink }}">
+<link rel="alternate" hreflang="x-default" href="{{ .Permalink }}">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
+
+<meta property="og:locale" content="{{ site.Params.locale }}">
+<meta property="og:site_name" content="{{ site.Title }}">
+<meta property="og:type" content="{{ if .Params.byline }}article{{ else }}website{{ end }}">
+<meta property="og:title" content="{{ $title }}">
+<meta property="og:description" content="{{ $desc }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:image" content="{{ $img }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ $title }}">
+<meta name="twitter:description" content="{{ $desc }}">
+<meta name="twitter:image" content="{{ $img }}">
+
+<link rel="preload" href="{{ "fonts/InterVariable.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+<script>document.documentElement.className+=' js'</script>
+{{ with resources.Get "css/main.css" | resources.Minify }}<style>{{ .Content | safeCSS }}</style>{{ end }}
+{{ partial "schema.html" . }}

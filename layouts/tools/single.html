@@ -1,0 +1,43 @@
+{{ define "main" }}
+{{ partial "breadcrumbs.html" . }}
+<header class="page">
+  <h1>{{ .Params.h1 | default .Title }}</h1>
+  {{ with .Description }}<p class="lead">{{ . }}</p>{{ end }}
+  <p class="byline muted">เขียนโดย <a href="{{ site.Params.author.url | relURL }}">{{ site.Params.author.name }}</a> – อัปเดตล่าสุด <time datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ .Lastmod.Format "2006-01-02" }}</time></p>
+</header>
+
+{{ $type := .Params.tool | default "style" }}
+{{ if eq $type "palette" }}
+  {{ partial "tool-palette.html" (dict "key" .Params.dataKey "joiner" (.Params.joiner | default "")) }}
+{{ else if eq $type "counter" }}
+  {{ partial "tool-counter.html" . }}
+{{ else }}
+  {{ partial "tool-cooltext.html" (dict "groups" (.Params.groups | default "all") "ids" .Params.ids "limit" .Params.limit "sample" (.Params.sample | default "Hello World")) }}
+{{ end }}
+
+<article class="prose">{{ .Content }}</article>
+{{ partial "faq.html" . }}
+
+{{ $related := where (where site.RegularPages "Section" "tools") "Permalink" "ne" .Permalink }}
+{{ with first 4 $related }}
+<section class="related" aria-labelledby="related-title">
+  <h2 id="related-title">เครื่องมือที่เกี่ยวข้อง</h2>
+  <ul class="cards">
+    {{- range . }}
+    <li><a class="card" href="{{ .RelPermalink }}"><strong>{{ .LinkTitle }}</strong><span class="muted">{{ .Description }}</span></a></li>
+    {{- end }}
+  </ul>
+</section>
+{{ end }}
+
+{{ partial "author-box.html" . }}
+{{ end }}
+
+{{ define "scripts" }}
+{{ $t := .Params.tool | default "style" }}
+{{ $file := "js/cooltext.js" }}
+{{ if eq $t "palette" }}{{ $file = "js/palette.js" }}{{ else if eq $t "counter" }}{{ $file = "js/counter.js" }}{{ end }}
+{{ with resources.Get $file | resources.Minify | resources.Fingerprint }}
+<script src="{{ .RelPermalink }}" defer></script>
+{{ end }}
+{{ end }}
