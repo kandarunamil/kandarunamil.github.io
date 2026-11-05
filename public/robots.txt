@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://kandarunamil.github.io/sitemap.xml
