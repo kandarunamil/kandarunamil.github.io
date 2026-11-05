@@ -12,7 +12,7 @@
           {{- range first 5 (where site.RegularPages "Section" "tools") }}
           <li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
           {{- end }}
-          <li><a href="{{ "/tools/" | relURL }}">ดูเครื่องมือทั้งหมด</a></li>
+          <li><a href="{{ "/hub/" | relURL }}">ดูเครื่องมือทั้งหมด</a></li>
         </ul>
       </nav>
       <nav aria-label="ข้อมูลเว็บไซต์">

@@ -1,26 +1,86 @@
 {{ define "main" }}
+{{/* ── /tools/ section hub page — uses hub-tools grid style ── */}}
 {{ partial "breadcrumbs.html" . }}
-<header class="page">
-  <h1>{{ .Params.h1 | default .Title }}</h1>
-  {{ with .Description }}<p class="lead">{{ . }}</p>{{ end }}
-</header>
-<ul class="cards">
-  <li>
-    <a class="card" href="{{ site.Home.RelPermalink }}">
-      <span class="card-icon" aria-hidden="true">𝐀</span>
-      <strong>{{ site.Home.Params.toolName | default "อักษรพิเศษ" }}</strong>
-      <span class="muted">{{ site.Home.Params.toolDesc | default "สร้างตัวอักษรพิเศษกว่า 30 สไตล์ในที่เดียว" }}</span>
-    </a>
-  </li>
-  {{- range .Pages.ByWeight }}
-  <li>
-    <a class="card" href="{{ .RelPermalink }}">
-      <span class="card-icon" aria-hidden="true">{{ .Params.icon }}</span>
-      <strong>{{ .LinkTitle }}</strong>
-      <span class="muted">{{ .Description }}</span>
-    </a>
-  </li>
-  {{- end }}
-</ul>
-<div class="prose">{{ .Content }}</div>
+
+<div class="hub-page">
+
+  {{/* Hero — with icon from home page (cool-text tool) + first tool link */}}
+  <header class="hub-hero" style="text-align:left">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:.5rem">
+      {{ with .Params.icon }}<span style="font-size:2.5rem;line-height:1" aria-hidden="true">{{ . }}</span>{{ end }}
+      <h1 style="margin:0">{{ .Params.h1 | default .Title }}</h1>
+    </div>
+    {{ with .Description }}<p class="lead" style="margin-inline:0">{{ . }}</p>{{ end }}
+  </header>
+
+  {{/* Search */}}
+  {{ if gt (len .Pages) 4 }}
+  <div class="hub-search" style="max-width:420px;margin-left:0;margin-bottom:1.5rem">
+    <input type="search" id="tools-search" placeholder="ค้นหาเครื่องมือ..." autocomplete="off" aria-label="ค้นหา">
+    <span class="hub-search-icon" aria-hidden="true">🔍</span>
+  </div>
+  {{ end }}
+
+  {{/* Count */}}
+  <div class="hub-section-header">
+    <h2>เครื่องมือทั้งหมด</h2>
+    <span class="hub-count">{{ add (len .Pages) 1 }} เครื่องมือ</span>
+  </div>
+
+  {{/* Tools grid — includes homepage cool-text tool at top */}}
+  <ul class="hub-tools" id="tools-grid">
+    <li>
+      <a class="hub-tool-card"
+         href="{{ site.Home.RelPermalink }}"
+         data-name="{{ site.Home.Params.toolName | default "อักษรพิเศษ" | lower }}">
+        <span class="hub-tool-icon" aria-hidden="true">𝐀</span>
+        <span class="hub-tool-name">{{ site.Home.Params.toolName | default "อักษรพิเศษ" }}</span>
+        <span class="hub-tool-desc">{{ site.Home.Params.toolDesc | default "สร้างตัวอักษรพิเศษกว่า 30 สไตล์ในที่เดียว" }}</span>
+        <span class="hub-tool-arrow">เปิดเครื่องมือ →</span>
+      </a>
+    </li>
+    {{- range .Pages.ByWeight }}
+    <li>
+      <a class="hub-tool-card"
+         href="{{ .RelPermalink }}"
+         data-name="{{ .LinkTitle | lower }}">
+        {{ with .Params.icon }}<span class="hub-tool-icon" aria-hidden="true">{{ . }}</span>{{ end }}
+        <span class="hub-tool-name">{{ .LinkTitle }}</span>
+        {{ with .Description }}<span class="hub-tool-desc">{{ . | truncate 80 }}</span>{{ end }}
+        <span class="hub-tool-arrow">เปิดเครื่องมือ →</span>
+      </a>
+    </li>
+    {{- end }}
+  </ul>
+
+  <p class="hub-empty" id="tools-empty">ไม่พบเครื่องมือที่ค้นหา ลองคำค้นอื่นดูนะ 🙂</p>
+
+  {{/* Prose content */}}
+  {{ with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+
+</div>
+{{ end }}
+
+{{ define "scripts" }}
+{{ if gt (len .Pages) 4 }}
+<script>
+(function(){
+  var s = document.getElementById('tools-search');
+  var items = document.querySelectorAll('#tools-grid li');
+  var empty = document.getElementById('tools-empty');
+  if(!s) return;
+  s.addEventListener('input', function(){
+    var q = s.value.trim().toLowerCase();
+    var vis = 0;
+    items.forEach(function(li){
+      var card = li.querySelector('.hub-tool-card');
+      var match = !q || (card&&card.dataset.name||'').indexOf(q) !== -1;
+      li.classList.toggle('is-hidden', !match);
+      if(match) vis++;
+    });
+    empty.classList.toggle('is-visible', vis===0);
+  });
+})();
+</script>
+{{ end }}
 {{ end }}

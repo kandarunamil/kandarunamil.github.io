@@ -1,0 +1,114 @@
+{{ define "main" }}
+{{/*
+  Main Hub page — /hub/
+  Lists ALL sections from the site (excluding "hub" itself and "author")
+  sorted by weight, grouped by category tab.
+*/}}
+<div class="hub-page">
+
+  {{/* ── Hero ── */}}
+  <div class="hub-hero">
+    <h1>{{ .Params.h1 | default .Title }}</h1>
+    {{ with .Description }}<p class="lead">{{ . }}</p>{{ end }}
+
+    <div class="hub-search">
+      <input type="search" id="hub-search"
+             placeholder="ค้นหาหมวดหมู่..."
+             autocomplete="off"
+             aria-label="ค้นหาหมวดหมู่เครื่องมือ">
+      <span class="hub-search-icon" aria-hidden="true">🔍</span>
+    </div>
+  </div>
+
+  {{/* ── Filter Tabs ── */}}
+  <ul class="hub-tabs" id="hub-tabs" role="list" aria-label="กรองหมวดหมู่">
+    <li><button class="hub-tab is-active" data-filter="all">ทั้งหมด</button></li>
+    <li><button class="hub-tab" data-filter="media">🎬 มีเดีย</button></li>
+    <li><button class="hub-tab" data-filter="image">🖼️ รูปภาพ</button></li>
+    <li><button class="hub-tab" data-filter="text">✍️ ข้อความ</button></li>
+    <li><button class="hub-tab" data-filter="time">⏰ เวลา</button></li>
+    <li><button class="hub-tab" data-filter="random">🎲 สุ่ม</button></li>
+    <li><button class="hub-tab" data-filter="dev">💻 Dev</button></li>
+    <li><button class="hub-tab" data-filter="pdf-file">📄 PDF & ไฟล์</button></li>
+    <li><button class="hub-tab" data-filter="social">📱 โซเชียล</button></li>
+    <li><button class="hub-tab" data-filter="device">🔧 อุปกรณ์</button></li>
+    <li><button class="hub-tab" data-filter="emoji">😊 Emoji</button></li>
+  </ul>
+
+  {{/* ── Category Grid header ── */}}
+  <div class="hub-section-header">
+    <h2>หมวดหมู่เครื่องมือ</h2>
+    <span class="hub-count" id="hub-visible-count"></span>
+  </div>
+
+  {{/* ── Category Cards ── iterate over ALL site sections, exclude hub & author ── */}}
+  {{- $sections := where site.Sections "Section" "not in" (slice "hub" "author") -}}
+  {{- $sections = sort $sections "Params.weight" -}}
+
+  <ul class="hub-categories" id="hub-categories">
+    {{- range $sections }}
+    <li>
+      <a class="hub-cat-card"
+         href="{{ .RelPermalink }}"
+         data-cat="{{ .Params.category | default "other" }}"
+         data-name="{{ .LinkTitle | lower }}">
+        <span class="hub-cat-icon" aria-hidden="true">{{ .Params.icon | default "🔧" }}</span>
+        <span class="hub-cat-name">{{ .LinkTitle }}</span>
+        {{ with .Description }}
+        <span class="hub-cat-desc">{{ . | truncate 70 }}</span>
+        {{ end }}
+        <span class="hub-cat-badge">{{ len .Pages }} เครื่องมือ</span>
+      </a>
+    </li>
+    {{- end }}
+  </ul>
+
+  <p class="hub-empty" id="hub-empty">ไม่พบหมวดหมู่ที่ค้นหา ลองคำค้นอื่นดูนะ 🙂</p>
+
+  {{/* ── Prose content (optional) ── */}}
+  {{ with .Content }}<div class="prose" style="margin-top:2rem">{{ . }}</div>{{ end }}
+
+</div>
+{{ end }}
+
+{{ define "scripts" }}
+<script>
+(function () {
+  var search   = document.getElementById('hub-search');
+  var tabs     = document.querySelectorAll('.hub-tab');
+  var items    = document.querySelectorAll('#hub-categories li');
+  var empty    = document.getElementById('hub-empty');
+  var countEl  = document.getElementById('hub-visible-count');
+  var currentFilter = 'all';
+
+  function update() {
+    var q = search ? search.value.trim().toLowerCase() : '';
+    var visible = 0;
+    items.forEach(function (li) {
+      var card = li.querySelector('.hub-cat-card');
+      var matchFilter = currentFilter === 'all' || (card && card.dataset.cat === currentFilter);
+      var matchSearch = !q || (card && (card.dataset.name || '').indexOf(q) !== -1);
+      var show = matchFilter && matchSearch;
+      li.classList.toggle('is-hidden', !show);
+      if (show) visible++;
+    });
+    if (empty) empty.classList.toggle('is-visible', visible === 0);
+    if (countEl) countEl.textContent = visible + ' หมวดหมู่';
+  }
+
+  if (search) search.addEventListener('input', update);
+
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      tabs.forEach(function (t) { t.classList.remove('is-active'); });
+      tab.classList.add('is-active');
+      currentFilter = tab.dataset.filter;
+      update();
+    });
+  });
+
+  // Init count
+  update();
+})();
+</script>
+{{ end }}

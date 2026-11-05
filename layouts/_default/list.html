@@ -1,13 +1,76 @@
 {{ define "main" }}
+{{/* ── Category Hub page ── shows all tools in this section ── */}}
 {{ partial "breadcrumbs.html" . }}
-<header class="page">
-  <h1>{{ .Params.h1 | default .Title }}</h1>
-  {{ with .Description }}<p class="lead">{{ . }}</p>{{ end }}
-</header>
-<div class="prose">{{ .Content }}</div>
-<ul class="cards">
-  {{- range .Pages }}
-  <li><a class="card" href="{{ .RelPermalink }}"><strong>{{ .LinkTitle }}</strong><span class="muted">{{ .Description }}</span></a></li>
-  {{- end }}
-</ul>
+
+<div class="hub-page">
+
+  {{/* Hero */}}
+  <header class="hub-hero" style="text-align:left">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:.5rem">
+      {{ with .Params.icon }}<span style="font-size:2.5rem;line-height:1" aria-hidden="true">{{ . }}</span>{{ end }}
+      <h1 style="margin:0">{{ .Params.h1 | default .Title }}</h1>
+    </div>
+    {{ with .Description }}<p class="lead" style="margin-inline:0">{{ . }}</p>{{ end }}
+  </header>
+
+  {{/* Search within category */}}
+  {{ if gt (len .Pages) 5 }}
+  <div class="hub-search" style="max-width:420px;margin-left:0;margin-bottom:1.5rem">
+    <input type="search" id="cat-search" placeholder="ค้นหาในหมวดนี้..." autocomplete="off" aria-label="ค้นหา">
+    <span class="hub-search-icon" aria-hidden="true">🔍</span>
+  </div>
+  {{ end }}
+
+  {{/* Tools count */}}
+  <div class="hub-section-header">
+    <h2>เครื่องมือทั้งหมด</h2>
+    <span class="hub-count">{{ len .Pages }} เครื่องมือ</span>
+  </div>
+
+  {{/* Tools grid */}}
+  <ul class="hub-tools" id="cat-tools">
+    {{- range .Pages.ByWeight }}
+    <li>
+      <a class="hub-tool-card"
+         href="{{ .RelPermalink }}"
+         data-name="{{ .LinkTitle | lower }}">
+        {{ with .Params.icon }}<span class="hub-tool-icon" aria-hidden="true">{{ . }}</span>{{ end }}
+        <span class="hub-tool-name">{{ .LinkTitle }}</span>
+        {{ with .Description }}<span class="hub-tool-desc">{{ . | truncate 80 }}</span>{{ end }}
+        <span class="hub-tool-arrow">เปิดเครื่องมือ →</span>
+      </a>
+    </li>
+    {{- end }}
+  </ul>
+
+  <p class="hub-empty" id="cat-empty">ไม่พบเครื่องมือที่ค้นหา ลองคำค้นอื่นดูนะ 🙂</p>
+
+  {{/* Prose content */}}
+  {{ with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+
+</div>
+{{ end }}
+
+{{ define "scripts" }}
+{{ if gt (len .Pages) 5 }}
+<script>
+(function(){
+  var s = document.getElementById('cat-search');
+  var items = document.querySelectorAll('#cat-tools li');
+  var empty = document.getElementById('cat-empty');
+  if(!s) return;
+  s.addEventListener('input', function(){
+    var q = s.value.trim().toLowerCase();
+    var vis = 0;
+    items.forEach(function(li){
+      var card = li.querySelector('.hub-tool-card');
+      var match = !q || (card&&card.dataset.name||'').includes(q);
+      li.classList.toggle('is-hidden', !match);
+      if(match) vis++;
+    });
+    empty.classList.toggle('is-visible', vis===0);
+  });
+})();
+</script>
+{{ end }}
 {{ end }}

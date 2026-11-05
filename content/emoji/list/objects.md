@@ -1,0 +1,13 @@
+---
+title: "สิ่ง"
+seoTitle: "สิ่ง คัดลอกวางฟรี"
+h1: "สิ่ง"
+description: "สิ่ง รวบรวมอีโมจิในหมวดนี้ กดเพื่อคัดลอกไปวางใน IG, Facebook, LINE และ TikTok ได้ทันที ใช้ฟรี"
+icon: "😀"
+category: "emoji"
+weight: 284
+byline: true
+date: 2026-11-05
+lastmod: 2026-11-05
+draft: true
+---
