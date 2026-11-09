@@ -36,6 +36,7 @@ draft: false
 </div>
 <script>
 (function () {
+
   var ta = document.getElementById('cp-text');
   var elChars = document.getElementById('cp-chars');
   var elWords = document.getElementById('cp-words');
