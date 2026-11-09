@@ -1,12 +1,12 @@
 
 5 November 2026
-https://kandarunamil.github.io/my-ip/ -- belum submit
+https://kandarunamil.github.io/my-ip/ 
 https://kandarunamil.github.io/japanese/kana/
 https://kandarunamil.github.io/scoreboard/
 https://kandarunamil.github.io/time/flip/
 
 6 November 2026
-https://kandarunamil.github.io/time/analog/
+https://kandarunamil.github.io/time/analog/ -- belum submit
 https://kandarunamil.github.io/time/standby/
 https://kandarunamil.github.io/time/teaching/
 https://kandarunamil.github.io/time/dst/
@@ -27,3 +27,5 @@ https://kandarunamil.github.io/screen/mirror/
 https://kandarunamil.github.io/screen/flashing-light/
 
 9 November 2026
+http://localhost:1313/pilipress/float-fb/
+http://localhost:1313/copy/
