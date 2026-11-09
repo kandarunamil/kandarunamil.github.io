@@ -1,5 +1,0 @@
-# Build output - GitHub Actions builds the site, never commit these
-/public/
-/resources/
-.hugo_build.lock
-*.swp
