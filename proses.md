@@ -27,5 +27,7 @@ https://kandarunamil.github.io/screen/mirror/
 https://kandarunamil.github.io/screen/flashing-light/
 
 9 November 2026
-http://localhost:1313/pilipress/float-fb/
-http://localhost:1313/copy/
+https://kandarunamil.github.io/pilipress/float-fb/
+https://kandarunamil.github.io/copy/
+
+10 November 2026
