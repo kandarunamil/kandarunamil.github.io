@@ -20,10 +20,10 @@ https://kandarunamil.github.io/protractor/
 https://kandarunamil.github.io/speed-test/ping/
 
 8 November 2026
-http://localhost:1313/counter/
-http://localhost:1313/screen/black/
-http://localhost:1313/screen/white/
-http://localhost:1313/screen/mirror/
-http://localhost:1313/screen/flashing-light/
+https://kandarunamil.github.io/counter/
+https://kandarunamil.github.io/screen/black/
+https://kandarunamil.github.io/screen/white/
+https://kandarunamil.github.io/screen/mirror/
+https://kandarunamil.github.io/screen/flashing-light/
 
 9 November 2026

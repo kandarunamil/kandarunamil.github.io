@@ -1,6 +1,9 @@
 {{- $c := slice -}}
 {{- range .Ancestors.Reverse -}}
-  {{- $c = $c | append (dict "name" (cond .IsHome "หน้าแรก" .LinkTitle) "url" .Permalink) -}}
+  {{- /* skip ancestors that are not published (e.g. draft section) -> empty permalink breaks BreadcrumbList "item" */ -}}
+  {{- if or .IsHome .Permalink -}}
+    {{- $c = $c | append (dict "name" (cond .IsHome "หน้าแรก" .LinkTitle) "url" .Permalink) -}}
+  {{- end -}}
 {{- end -}}
 {{- $c = $c | append (dict "name" .LinkTitle "url" .Permalink) -}}
 {{- return $c -}}
