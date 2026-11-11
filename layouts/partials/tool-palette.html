@@ -1,5 +1,5 @@
 {{/* Usage: partial "tool-palette.html" (dict "key" "symbols" "joiner" "") ; data in /data/<key>.yaml */}}
-{{ $d := index site.Data .key }}
+{{ $d := index hugo.Data .key }}
 <section class="tool" id="pal" data-joiner="{{ .joiner }}" aria-label="ตัวเลือกสัญลักษณ์">
   <label class="tool-label" for="pal-out">ข้อความที่เลือก (กดตัวเลือกด้านล่างเพื่อเพิ่ม)</label>
   <textarea id="pal-out" rows="2" spellcheck="false" autocomplete="off" placeholder="กดสัญลักษณ์ที่ต้องการ ระบบจะคัดลอกให้อัตโนมัติ"></textarea>

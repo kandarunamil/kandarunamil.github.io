@@ -13,3 +13,11 @@
 {{ partial "faq.html" . }}
 {{ if .Params.byline }}{{ partial "author-box.html" . }}{{ end }}
 {{ end }}
+
+{{ define "scripts" }}
+{{ with .Params.jsFile }}
+{{ with resources.Get . | resources.Minify | resources.Fingerprint }}
+<script src="{{ .RelPermalink }}" defer></script>
+{{ end }}
+{{ end }}
+{{ end }}

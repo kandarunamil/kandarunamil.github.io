@@ -1,6 +1,6 @@
 baseURL = "https://kandarunamil.github.io/"
 title = "อักษรพิเศษ"
-languageCode = "th-TH"
+locale = "th-TH"
 defaultContentLanguage = "th"
 enableRobotsTXT = true
 disableKinds = ["taxonomy", "term"]

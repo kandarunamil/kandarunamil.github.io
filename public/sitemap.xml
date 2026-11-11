@@ -147,8 +147,33 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url><url>
+    <loc>http://localhost:1313/random/team/</loc>
+    <lastmod>2026-11-11T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url><url>
+    <loc>http://localhost:1313/vibrator/</loc>
+    <lastmod>2026-11-11T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url><url>
+    <loc>http://localhost:1313/cool-text/zalgo-text/</loc>
+    <lastmod>2026-11-11T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url><url>
+    <loc>http://localhost:1313/cool-text/invisible-ink/</loc>
+    <lastmod>2026-11-11T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url><url>
     <loc>http://localhost:1313/tools/underline-text/</loc>
     <lastmod>2026-10-19T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url><url>
+    <loc>http://localhost:1313/cool-text/old-english/</loc>
+    <lastmod>2026-11-11T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url><url>

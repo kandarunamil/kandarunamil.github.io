@@ -103,108 +103,6 @@
 <button type="button" class="vb-start" id="vb-start">เริ่มสั่น</button>
 <p class="vb-status" id="vb-status" aria-live="polite">เลือกโหมดและความแรง แล้วกดเริ่มสั่น</p>
 </div>
-<script>
-(function () {
-  var box = document.getElementById('vb-box');
-  var warn = document.getElementById('vb-warn');
-  var startBtn = document.getElementById('vb-start');
-  var status = document.getElementById('vb-status');
-  var slider = document.getElementById('vb-level');
-  var levelText = document.getElementById('vb-level-text');
-  var modeBtns = document.querySelectorAll('.vb-mode');
-  var names = {
-    slow: 'สั่นช้า',
-    medium: 'สั่นปานกลาง',
-    fast: 'สั่นเร็ว',
-    progressive: 'จังหวะก้าวหน้า',
-    drum: 'กลอง',
-    constant: 'ตลอดเวลา'
-  };
-  var mode = 'slow';
-  var timer = null;
-  var running = false;
-  var supported = typeof navigator !== 'undefined' && typeof navigator.vibrate === 'function';
-<p>function scale(ms) {
-var v = Math.round(ms * Number(slider.value) / 10);
-return v &gt; 10 ? v : 10;
-}</p>
-<p>function duty(cycle) {
-var on = scale(cycle);
-return [on, cycle - on];
-}</p>
-<p>function buildPattern() {
-if (mode === &lsquo;slow&rsquo;) { return duty(1000); }
-if (mode === &lsquo;medium&rsquo;) { return duty(500); }
-if (mode === &lsquo;fast&rsquo;) { return duty(200); }
-if (mode === &lsquo;progressive&rsquo;) {
-var arr = [];
-[1, 2, 3, 4, 5].forEach(function (i) {
-arr.push(scale(i * 80));
-arr.push(100);
-});
-return arr;
-}
-if (mode === &lsquo;drum&rsquo;) {
-return [120, 80, 120, 80, 300, 200].map(function (v, idx) {
-return idx % 2 === 0 ? scale(v) : v;
-});
-}
-return [1000];
-}</p>
-<p>function total(pattern) {
-return pattern.reduce(function (a, b) { return a + b; }, 0);
-}</p>
-<p>function tick() {
-try { navigator.vibrate(buildPattern()); } catch (e) {}
-}</p>
-<p>function stop() {
-running = false;
-if (timer) { clearInterval(timer); timer = null; }
-if (supported) { try { navigator.vibrate(0); } catch (e) {} }
-startBtn.textContent = &lsquo;เริ่มสั่น&rsquo;;
-startBtn.classList.remove(&lsquo;vb-on&rsquo;);
-box.classList.remove(&lsquo;vb-pulse&rsquo;);
-status.textContent = &lsquo;หยุดแล้ว&rsquo;;
-}</p>
-<p>function start() {
-if (!supported) { return; }
-if (timer) { clearInterval(timer); timer = null; }
-running = true;
-var pattern = buildPattern();
-tick();
-timer = setInterval(tick, Math.max(total(pattern), 100));
-startBtn.textContent = &lsquo;หยุดสั่น&rsquo;;
-startBtn.classList.add(&lsquo;vb-on&rsquo;);
-status.textContent = &lsquo;กำลังสั่น: &rsquo; + names[mode] + &rsquo; (ความแรง &rsquo; + slider.value + &lsquo;)&rsquo;;
-}</p>
-<p>if (!supported) {
-warn.style.display = &lsquo;block&rsquo;;
-startBtn.disabled = true;
-}</p>
-<p>modeBtns.forEach(function (btn) {
-btn.addEventListener(&lsquo;click&rsquo;, function () {
-mode = btn.getAttribute(&lsquo;data-mode&rsquo;);
-modeBtns.forEach(function (b) {
-b.setAttribute(&lsquo;aria-pressed&rsquo;, b === btn ? &rsquo;true&rsquo; : &lsquo;false&rsquo;);
-});
-if (running) { start(); } else { status.textContent = &lsquo;เลือกโหมด: &rsquo; + names[mode]; }
-});
-});</p>
-<p>slider.addEventListener(&lsquo;input&rsquo;, function () {
-levelText.textContent = slider.value;
-if (running) { start(); }
-});</p>
-<p>startBtn.addEventListener(&lsquo;click&rsquo;, function () {
-if (running) { stop(); } else { start(); }
-});</p>
-<p>document.addEventListener(&lsquo;visibilitychange&rsquo;, function () {
-if (document.hidden &amp;&amp; running) { stop(); }
-});</p>
-<p>window.addEventListener(&lsquo;pagehide&rsquo;, function () {
-if (running) { stop(); }
-});
-})();
-</script></p>
 <h2 id="วธใชเครองนวดสนบนมอถอ">วิธีใช้เครื่องนวดสั่นบนมือถือ</h2>
 <ol>
 <li>เปิดหน้านี้ด้วย Chrome หรือ Firefox บนมือถือ Android (ไม่รองรับ iPhone และเดสก์ท็อป)</li>
@@ -284,6 +182,12 @@ if (running) { stop(); }
 
 
 <script src="/js/main.min.d6fcf5bac25e929b47a8022c64ea31e4686086f80e731f42ea7088beb06432cd.js" defer></script>
+
+
+
+
+<script src="/js/vibrator.min.59fa3aeb906db4ed7b3d7dd3069385be5841bf4274c738f0eac9a8328fdcffdd.js" defer></script>
+
 
 
 </body>

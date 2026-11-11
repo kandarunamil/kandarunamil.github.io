@@ -38,10 +38,10 @@ https://kandarunamil.github.io/random/number/
 https://kandarunamil.github.io/random/password/
 
 11 November 2026
-http://localhost:1313/random/team/
-http://localhost:1313/vibrator/
-http://localhost:1313/cool-text/zalgo-text/
-http://localhost:1313/cool-text/invisible-ink/
-http://localhost:1313/cool-text/old-english/
+https://kandarunamil.github.io/random/team/
+https://kandarunamil.github.io/vibrator/
+https://kandarunamil.github.io/cool-text/zalgo-text/
+https://kandarunamil.github.io/cool-text/invisible-ink/
+https://kandarunamil.github.io/cool-text/old-english/
 
 12 November 2026
