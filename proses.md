@@ -10,14 +10,14 @@ https://kandarunamil.github.io/time/analog/
 https://kandarunamil.github.io/time/standby/
 https://kandarunamil.github.io/time/teaching/
 https://kandarunamil.github.io/time/dst/
-https://kandarunamil.github.io/calculator/percent/ -- belum submit
+https://kandarunamil.github.io/calculator/percent/ 
 
 7 November 2026
 https://kandarunamil.github.io/random/coin/
 https://kandarunamil.github.io/random/list/
 https://kandarunamil.github.io/random/wheel/
 https://kandarunamil.github.io/protractor/
-https://kandarunamil.github.io/speed-test/ping/
+https://kandarunamil.github.io/speed-test/ping/ -- belum submit
 
 8 November 2026
 https://kandarunamil.github.io/counter/
@@ -31,10 +31,17 @@ https://kandarunamil.github.io/pilipress/float-fb/
 https://kandarunamil.github.io/copy/
 
 10 November 2026
-http://localhost:1313/converter/whitespace/
-http://localhost:1313/converter/english-numbers/
-http://localhost:1313/random/dice/
-http://localhost:1313/random/number/
-http://localhost:1313/random/password/
+https://kandarunamil.github.io/converter/whitespace/
+https://kandarunamil.github.io/converter/english-numbers/
+https://kandarunamil.github.io/random/dice/
+https://kandarunamil.github.io/random/number/
+https://kandarunamil.github.io/random/password/
 
 11 November 2026
+http://localhost:1313/random/team/
+http://localhost:1313/vibrator/
+http://localhost:1313/cool-text/zalgo-text/
+http://localhost:1313/cool-text/invisible-ink/
+http://localhost:1313/cool-text/old-english/
+
+12 November 2026
