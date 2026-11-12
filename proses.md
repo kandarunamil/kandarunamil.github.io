@@ -17,14 +17,14 @@ https://kandarunamil.github.io/random/coin/
 https://kandarunamil.github.io/random/list/
 https://kandarunamil.github.io/random/wheel/
 https://kandarunamil.github.io/protractor/
-https://kandarunamil.github.io/speed-test/ping/ -- belum submit
+https://kandarunamil.github.io/speed-test/ping/ 
 
 8 November 2026
 https://kandarunamil.github.io/counter/
 https://kandarunamil.github.io/screen/black/
 https://kandarunamil.github.io/screen/white/
 https://kandarunamil.github.io/screen/mirror/
-https://kandarunamil.github.io/screen/flashing-light/
+https://kandarunamil.github.io/screen/flashing-light/ -- belum submit
 
 9 November 2026
 https://kandarunamil.github.io/pilipress/float-fb/
@@ -45,3 +45,9 @@ https://kandarunamil.github.io/cool-text/invisible-ink/
 https://kandarunamil.github.io/cool-text/old-english/
 
 12 November 2026
+http://localhost:1313/cool-text/cursive/
+http://localhost:1313/emoji/download/
+http://localhost:1313/emoji/in-blog/
+http://localhost:1313/emoji/google/
+
+13 November 2026

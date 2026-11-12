@@ -4,11 +4,13 @@
   <h1>{{ .Params.h1 | default .Title }}</h1>
   {{ with .Description }}<p class="lead">{{ . }}</p>{{ end }}
   <p class="byline muted">เขียนโดย <a href="{{ site.Params.author.url | relURL }}">{{ site.Params.author.name }}</a> –
-    อัปเดตล่าสุด <time datetime="{{ .Lastmod.Format " 2006-01-02" }}">{{ .Lastmod.Format "2006-01-02" }}</time></p>
+    อัปเดตล่าสุด <time datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ .Lastmod.Format "2006-01-02" }}</time></p>
 </header>
 
 {{ $type := .Params.tool | default "style" }}
-{{ if eq $type "palette" }}
+{{ if .Params.jsFile }}
+{{/* Tool kustom: UI dirender oleh jsFile / konten markdown, jadi tidak memakai partial tool bawaan */}}
+{{ else if eq $type "palette" }}
 {{ partial "tool-palette.html" (dict "key" .Params.dataKey "joiner" (.Params.joiner | default "")) }}
 {{ else if eq $type "counter" }}
 {{ partial "tool-counter.html" . }}
@@ -37,10 +39,29 @@
 {{ end }}
 
 {{ define "scripts" }}
-{{ $t := .Params.tool | default "style" }}
-{{ $file := "js/cooltext.js" }}
-{{ if eq $t "palette" }}{{ $file = "js/palette.js" }}{{ else if eq $t "counter" }}{{ $file = "js/counter.js" }}{{ end }}
-{{ with resources.Get $file | resources.Minify | resources.Fingerprint }}
+{{/* CSS kustom (opsional) dari frontmatter cssFile, dibaca dari folder assets/ */}}
+{{ with .Params.cssFile }}
+  {{ with resources.Get . }}
+    {{ with . | resources.Minify | resources.Fingerprint }}
+<link rel="stylesheet" href="{{ .RelPermalink }}">
+    {{ end }}
+  {{ else }}
+    {{ warnf "cssFile tidak ditemukan di assets/: %s" . }}
+  {{ end }}
+{{ end }}
+
+{{/* JS: pakai jsFile dari frontmatter, kalau kosong pakai JS bawaan sesuai tipe tool */}}
+{{ $js := .Params.jsFile }}
+{{ if not $js }}
+  {{ $t := .Params.tool | default "style" }}
+  {{ $js = "js/cooltext.js" }}
+  {{ if eq $t "palette" }}{{ $js = "js/palette.js" }}{{ else if eq $t "counter" }}{{ $js = "js/counter.js" }}{{ end }}
+{{ end }}
+{{ with resources.Get $js }}
+  {{ with . | resources.Minify | resources.Fingerprint }}
 <script src="{{ .RelPermalink }}" defer></script>
+  {{ end }}
+{{ else }}
+  {{ warnf "JS tidak ditemukan di assets/: %s" $js }}
 {{ end }}
 {{ end }}

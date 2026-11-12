@@ -1,0 +1,35 @@
+/* emoji-google.css - mobile-first, max width 720px.
+   Optional (forces Noto look on every device): @import url("https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap"); */
+.eg-app{--eg-bd:#d9dde3;--eg-bg:#f6f7f9;--eg-ac:#1a73e8;--eg-tx:inherit;
+  max-width:720px;margin:0 auto 1.5rem;box-sizing:border-box;position:relative;color:var(--eg-tx)}
+.eg-app *{box-sizing:border-box}
+.eg-compose{margin-bottom:.75rem}
+.eg-output{width:100%;min-height:56px;padding:.6rem .75rem;border:1px solid var(--eg-bd);border-radius:10px;
+  font:1.4rem/1.4 "Noto Color Emoji","Apple Color Emoji","Segoe UI Emoji",sans-serif;resize:vertical;background:#fff;color:#222}
+.eg-output:focus{outline:2px solid var(--eg-ac);outline-offset:1px}
+.eg-row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-top:.5rem}
+.eg-btn,.eg-select{min-height:40px;padding:0 .9rem;border:1px solid var(--eg-bd);border-radius:8px;background:#fff;color:#222;
+  font:inherit;font-size:.95rem;cursor:pointer}
+.eg-btn:hover{background:var(--eg-bg)}
+.eg-primary{background:var(--eg-ac);border-color:var(--eg-ac);color:#fff}
+.eg-primary:hover{background:#1558b8}
+.eg-tabs{display:flex;gap:.4rem;overflow-x:auto;padding-bottom:.4rem;margin-bottom:.5rem;-webkit-overflow-scrolling:touch}
+.eg-tab{flex:0 0 auto;display:inline-flex;align-items:center;gap:.35rem;min-height:38px;padding:0 .75rem;border:1px solid var(--eg-bd);
+  border-radius:999px;background:#fff;color:#222;font:inherit;font-size:.9rem;cursor:pointer;white-space:nowrap}
+.eg-tab.eg-active{background:var(--eg-ac);border-color:var(--eg-ac);color:#fff}
+.eg-ti{font-family:"Noto Color Emoji","Apple Color Emoji","Segoe UI Emoji",sans-serif}
+.eg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(44px,1fr));gap:2px;max-height:360px;overflow-y:auto;
+  padding:.4rem;border:1px solid var(--eg-bd);border-radius:10px;background:#fff;-webkit-overflow-scrolling:touch}
+.eg-emoji{height:44px;padding:0;border:0;border-radius:8px;background:transparent;cursor:pointer;font-size:1.65rem;line-height:1;
+  font-family:"Noto Color Emoji","Apple Color Emoji","Segoe UI Emoji",sans-serif}
+.eg-emoji:hover,.eg-emoji:focus-visible{background:var(--eg-bg);outline:none;box-shadow:inset 0 0 0 2px var(--eg-ac)}
+.eg-preview{display:flex;gap:1rem;align-items:center;margin-top:.75rem;padding:.75rem;border:1px solid var(--eg-bd);border-radius:10px;background:var(--eg-bg)}
+.eg-preview[hidden]{display:none}
+.eg-big{flex:0 0 auto;min-width:72px;text-align:center;font-size:3.5rem;line-height:1.1;
+  font-family:"Noto Color Emoji","Apple Color Emoji","Segoe UI Emoji",sans-serif}
+.eg-info{flex:1 1 auto;min-width:0}
+.eg-code{font:.85rem/1.4 ui-monospace,Menlo,Consolas,monospace;color:#555;word-break:break-all}
+.eg-toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);padding:.55rem 1rem;border-radius:999px;background:#222;color:#fff;
+  font-size:.9rem;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:9999}
+.eg-toast.eg-show{opacity:.95;transform:translate(-50%,0)}
+@media (min-width:600px){.eg-grid{grid-template-columns:repeat(auto-fill,minmax(48px,1fr))}.eg-emoji{height:48px;font-size:1.8rem}}

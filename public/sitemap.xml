@@ -177,6 +177,26 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url><url>
+    <loc>http://localhost:1313/cool-text/cursive/</loc>
+    <lastmod>2026-11-12T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url><url>
+    <loc>http://localhost:1313/emoji/download/</loc>
+    <lastmod>2026-11-12T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url><url>
+    <loc>http://localhost:1313/emoji/in-blog/</loc>
+    <lastmod>2026-11-12T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url><url>
+    <loc>http://localhost:1313/emoji/google/</loc>
+    <lastmod>2026-11-12T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url><url>
     <loc>http://localhost:1313/tools/upside-down-text/</loc>
     <lastmod>2026-10-19T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>

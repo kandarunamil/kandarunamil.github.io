@@ -15,9 +15,18 @@
 {{ end }}
 
 {{ define "scripts" }}
+{{ with .Params.cssFile }}
+{{ with resources.Get . }}
+{{ with . | resources.Minify | resources.Fingerprint }}
+<link rel="stylesheet" href="{{ .RelPermalink }}">
+{{ end }}
+{{ end }}
+{{ end }}
 {{ with .Params.jsFile }}
-{{ with resources.Get . | resources.Minify | resources.Fingerprint }}
+{{ with resources.Get . }}
+{{ with . | resources.Minify | resources.Fingerprint }}
 <script src="{{ .RelPermalink }}" defer></script>
+{{ end }}
 {{ end }}
 {{ end }}
 {{ end }}
